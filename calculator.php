@@ -256,6 +256,139 @@ class Volumen extends Conversion
     }
 }
 
+
+class Tiempo extends Conversion
+{
+    public function data_array()
+    {
+        $operaciones = array(
+            "milisegundos" => array(
+                'nanosegundos' => '* 1000',
+                'segundos' => '/ 1000',
+                'microsegundos' => '* 1000',
+                'minutos' => '/ 60000',
+                'horas' => '/ 3600000',
+                'dias' => '/ 86400000',
+                'semanas' => '/ 604800000',
+                'meses' => '/ 2628000000',
+                'años' => '/ 31536000000'
+            ),
+            "nanosegundos" => array(
+                'milisegundos' => '/ 1000',
+                'segundos' => '/ 1000000000',
+                'microsegundos' => '/ 1000',
+                'minutos' => '/ 60000000000',
+                'horas' => '/ 3600000000000',
+                'dias' => '/ 86400000000000',
+                'semanas' => '/ 604800000000000',
+                'meses' => '/ 2628000000000000',
+                'años' => '/ 31536000000000000'
+            ),
+            "segundos" => array(
+                'milisegundos' => '* 1000',
+                'nanosegundos' => '* 1000000000',
+                'microsegundos' => '* 1000000',
+                'minutos' => '/ 60',
+                'horas' => '/ 3600',
+                'dias' => '/ 86400',
+                'semanas' => '/ 604800',
+                'meses' => '/ 2628000',
+                'años' => '/ 31536000'
+            ),
+            "microsegundos" => array(
+                'milisegundos' => '/ 1000',
+                'nanosegundos' => '* 1000',
+                'segundos' => '/ 1000000',
+                'minutos' => '/ 60000000',
+                'horas' => '/ 3600000000',
+                'dias' => '/ 86400000000',
+                'semanas' => '/ 604800000000',
+                'meses' => '/ 2628000000000',
+                'años' => '/ 31536000000000'
+            ),
+            "minutos" => array(
+                'milisegundos' => '* 60000',
+                'nanosegundos' => '* 60000000000',
+                'segundos' => '* 60',
+                'microsegundos' => '* 60000000',
+                'horas' => '/ 60',
+                'dias' => '/ 1440',
+                'semanas' => '/ 10080',
+                'meses' => '/ 43800',
+                'años' => '/ 525600'
+            ),
+            "horas" => array(
+                'milisegundos' => '* 3600000',
+                'nanosegundos' => '* 3600000000000',
+                'segundos' => '* 3600',
+                'microsegundos' => '* 3600000000',
+                'minutos' => '* 60',
+                'dias' => '/ 24',
+                'semanas' => '/ 168',
+                'meses' => '/ 730',
+                'años' => '/ 8760'
+            ),
+            "dias" => array(
+                'milisegundos' => '* 86400000',
+                'nanosegundos' => '* 86400000000000',
+                'segundos' => '* 86400',
+                'microsegundos' => '* 86400000000',
+                'minutos' => '* 1440',
+                'horas' => '* 24',
+                'semanas' => '/ 7',
+                'meses' => '/ 30.417',
+                'años' => '/ 365'
+            ),
+            "semanas" => array(
+                'milisegundos' => '* 604800000',
+                'nanosegundos' => '* 604800000000000',
+                'segundos' => '* 604800',
+                'microsegundos' => '* 604800000000',
+                'minutos' => '* 10080',
+                'horas' => '* 168',
+                'dias' => '* 7',
+                'meses' => '/ 4.345',
+                'años' => '/ 52.143'
+            ),
+            "meses" => array(
+                'milisegundos' => '* 2628000000',
+                'nanosegundos' => '* 2628000000000000',
+                'segundos' => '* 2628000',
+                'microsegundos' => '* 2628000000000',
+                'minutos' => '* 43800',
+                'horas' => '* 730',
+                'dias' => '* 30.417',
+                'semanas' => '* 4.345',
+                'años' => '/ 12'
+            ),
+            "años" => array(
+                'milisegundos' => '* 31536000000',
+                'nanosegundos' => '* 31536000000000000',
+                'segundos' => '* 31536000',
+                'microsegundos' => '* 31536000000000',
+                'minutos' => '* 525600',
+                'horas' => '* 8760',
+                'dias' => '* 365',
+                'semanas' => '* 52.143',
+                'meses' => '* 12'
+            )
+        );
+
+        return $operaciones;
+    }
+
+    public function convert($quantity, $select1, $select2)
+    {
+        if ($quantity == null or $quantity == 0 or $select1 == $select2) {
+            return "Nada que hacer";
+        } else {
+            $formula = $this->data_array()["$select1"]["$select2"];
+            $conversion = $quantity . $formula;
+            return eval("return $conversion;");
+        }
+    }
+}
+
 class ConversionCalculator
 {
     protected $conversionStrategy;
@@ -343,6 +476,20 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html5, $matches5)) {
         if ($confirmation_check) {
             $volumen = new Volumen();
             $cal_convertion->setConversionStrategy($volumen);
+            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        }
+    }
+}
+
+
+$html6 = file_get_contents('tiempo.php');
+if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html6, $matches6)) {
+    $title6 = $matches6[1]; // Valor de la etiqueta title
+    if ($title6 == "Tiempo") {
+        $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        if ($confirmation_check) {
+            $tiempo = new Tiempo();
+            $cal_convertion->setConversionStrategy($tiempo);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
