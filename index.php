@@ -11,6 +11,9 @@
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+
     <title name="Monedas">Monedas</title>
 </head>
 
@@ -48,6 +51,7 @@
 
     <main>
         <section>
+            <h3>Monedas</h3>
             <form method="POST" action="">
                 <div class="form-floating mb-3">
                     <input type="number" name="quantity" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -85,7 +89,7 @@
                 </div>
                 <button type="submit">Convertir</button>
             </form>
-            <p><?php echo $result; ?></p>
+            <p class="content-result">Resultado de la conversion: <span><?php echo $result_monedas; ?></span></p>
         </section>
 
     </main>

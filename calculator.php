@@ -32,7 +32,7 @@ class Monedas extends Conversion
             CURLOPT_URL => "https://api.apilayer.com/exchangerates_data/symbols",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: text/plain",
-                "apikey: Ngm1q1Ar8uEqTOGGfY5X1C0kIGw1JGrr"
+                "apikey: BfTLi2g4xtbZ0bsvflT79P1kMB4LKko2"
             ),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
@@ -63,7 +63,7 @@ class Monedas extends Conversion
                 CURLOPT_URL => "https://api.apilayer.com/exchangerates_data/convert?to=$select2&from=$select1&amount=$quantity",
                 CURLOPT_HTTPHEADER => array(
                     "Content-Type: text/plain",
-                    "apikey: Ngm1q1Ar8uEqTOGGfY5X1C0kIGw1JGrr"
+                    "apikey: BfTLi2g4xtbZ0bsvflT79P1kMB4LKko2"
                 ),
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
@@ -415,11 +415,11 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html, $matches)) {
     $title = $matches[1]; // Valor de la etiqueta title
     if ($title == "Monedas") {
         $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
-        if ($confirmation_check) {
-            $monedas = new Monedas();
-            $response = $monedas->symbols();
-            $cal_convertion->setConversionStrategy($monedas);
-            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        $monedas = new Monedas();
+        $response = $monedas->symbols();
+        $cal_convertion->setConversionStrategy($monedas);
+        if ($confirmation_check == true) {
+            $result_monedas = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
 }
@@ -430,9 +430,9 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html2, $matches2)) {
     $title2 = $matches2[1]; // Valor de la etiqueta title
     if ($title2 == "Longitud") {
         $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        $longitud = new Longitud();
+        $cal_convertion->setConversionStrategy($longitud);
         if ($confirmation_check) {
-            $longitud = new Longitud();
-            $cal_convertion->setConversionStrategy($longitud);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
@@ -444,9 +444,9 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html3, $matches3)) {
     $title3 = $matches3[1]; // Valor de la etiqueta title
     if ($title3 == "Masa") {
         $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        $masa = new Masa();
+        $cal_convertion->setConversionStrategy($masa);
         if ($confirmation_check) {
-            $masa = new Masa();
-            $cal_convertion->setConversionStrategy($masa);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
@@ -458,9 +458,9 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html4, $matches4)) {
     $title4 = $matches4[1]; // Valor de la etiqueta title
     if ($title4 == "Datos") {
         $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        $datos = new Datos();
+        $cal_convertion->setConversionStrategy($datos);
         if ($confirmation_check) {
-            $datos = new Datos();
-            $cal_convertion->setConversionStrategy($datos);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
@@ -473,9 +473,9 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html5, $matches5)) {
     $title5 = $matches5[1]; // Valor de la etiqueta title
     if ($title5 == "Volumen") {
         $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        $volumen = new Volumen();
+        $cal_convertion->setConversionStrategy($volumen);
         if ($confirmation_check) {
-            $volumen = new Volumen();
-            $cal_convertion->setConversionStrategy($volumen);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
@@ -487,9 +487,9 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html6, $matches6)) {
     $title6 = $matches6[1]; // Valor de la etiqueta title
     if ($title6 == "Tiempo") {
         $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        $tiempo = new Tiempo();
+        $cal_convertion->setConversionStrategy($tiempo);
         if ($confirmation_check) {
-            $tiempo = new Tiempo();
-            $cal_convertion->setConversionStrategy($tiempo);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
