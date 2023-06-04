@@ -221,6 +221,41 @@ class Datos extends Conversion
     }
 }
 
+
+class Volumen extends Conversion
+{
+
+    public function data_array()
+    {
+        $operaciones = array(
+            "litros" => array(
+                'mililitros' => '* 1000',
+                'galones' => '* 0.264172'
+            ),
+            "mililitros" => array(
+                'litros' => '/ 1000',
+                'galones' => '/ 3785.41'
+            ),
+            "galones" => array(
+                'litros' => '* 3.78541',
+                'mililitros' => '* 3785.41'
+            )
+        );
+        return $operaciones;
+    }
+
+    public function convert($quantity, $select1, $select2)
+    {
+        if ($quantity == null or $quantity == 0 or $select1 == $select2) {
+            return "Nada que hacer";
+        } else {
+            $formula = $this->data_array()["$select1"]["$select2"];
+            $conversion = $quantity . $formula;
+            return eval("return $conversion;");
+        }
+    }
+}
+
 class ConversionCalculator
 {
     protected $conversionStrategy;
@@ -293,6 +328,21 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html4, $matches4)) {
         if ($confirmation_check) {
             $datos = new Datos();
             $cal_convertion->setConversionStrategy($datos);
+            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        }
+    }
+}
+
+
+
+$html5 = file_get_contents('volumen.php');
+if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html5, $matches5)) {
+    $title5 = $matches5[1]; // Valor de la etiqueta title
+    if ($title5 == "Volumen") {
+        $confirmation_check = $check->checkSelect($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+        if ($confirmation_check) {
+            $volumen = new Volumen();
+            $cal_convertion->setConversionStrategy($volumen);
             $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
