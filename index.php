@@ -17,7 +17,7 @@
 <body>
     <header class="header">
         <nav>
-            <a href="">
+            <a href="./index.php">
                 <h1>Convertidor</h1>
             </a>
 
@@ -32,9 +32,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
+                        <a href="./index.php">Monedas</a>
                         <a href="./view/longitud.php">Longitud</a>
                         <a href="./view/masa.php">Masa</a>
                         <a href="./view/datos.php">Datos</a>
+                        <a href="./view/tiempo.php">Tiempo</a>
+                        <a href="./view/volumen.php">Volumen</a>
+
                     </div>
                 </div>
             </div>

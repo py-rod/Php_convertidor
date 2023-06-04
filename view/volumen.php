@@ -32,7 +32,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        ...
+                        <a href="../index.php">Monedas</a>
+                        <a href="./longitud.php">Longitud</a>
+                        <a href="./masa.php">Masa</a>
+                        <a href="./datos.php">Datos</a>
+                        <a href="./tiempo.php">Tiempo</a>
+                        <a href="./volumen.php">Volumen</a>
                     </div>
                 </div>
             </div>
