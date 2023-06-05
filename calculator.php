@@ -433,7 +433,7 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html2, $matches2)) {
         $longitud = new Longitud();
         $cal_convertion->setConversionStrategy($longitud);
         if ($confirmation_check) {
-            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+            $result_longitud = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
 }
@@ -447,7 +447,7 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html3, $matches3)) {
         $masa = new Masa();
         $cal_convertion->setConversionStrategy($masa);
         if ($confirmation_check) {
-            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+            $result_masa = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
 }
@@ -461,7 +461,7 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html4, $matches4)) {
         $datos = new Datos();
         $cal_convertion->setConversionStrategy($datos);
         if ($confirmation_check) {
-            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+            $result_datos = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
 }
@@ -476,7 +476,7 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html5, $matches5)) {
         $volumen = new Volumen();
         $cal_convertion->setConversionStrategy($volumen);
         if ($confirmation_check) {
-            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+            $result_volumen = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
 }
@@ -490,7 +490,7 @@ if (preg_match('/<title[^>]*>(.*?)<\/title>/ims', $html6, $matches6)) {
         $tiempo = new Tiempo();
         $cal_convertion->setConversionStrategy($tiempo);
         if ($confirmation_check) {
-            $result = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
+            $result_tiempo = $cal_convertion->convert($_POST["quantity"], $_POST["select1"], $_POST["select2"]);
         }
     }
 }

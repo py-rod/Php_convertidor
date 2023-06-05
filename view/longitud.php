@@ -73,7 +73,7 @@
                 </div>
                 <button type="submit">Convertir</button>
             </form>
-            <p class="content-result">Resultado de la conversion: <span><?php echo $result_monedas; ?></span></p>
+            <p class="content-result">Resultado de la conversion: <span><?php echo $result_longitud; ?></span></p>
         </section>
     </main>
 

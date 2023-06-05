@@ -60,6 +60,48 @@ main {
 
 
 
+/* PARTE DEL MENU DE HEADER */
+.offcanvas {
+    background-color: rgb(30, 29, 161);
+    color: white;
+}
+
+
+/* PARTE DEL BOTON DE CERRAR DEL OFFCANVAS */
+.offcanvas-header {
+    border-bottom: 1px solid white;
+}
+
+.offcanvas-header>button {
+    background-color: rgb(252, 42, 52);
+}
+
+
+
+/* CUERPO DEL OFFCANVAS */
+.offcanvas-body>a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 10px 8px;
+    --clippy: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+
+
+.offcanvas-body>a::after {
+    content: "";
+    background-color: yellow;
+    display: block;
+    height: 3px;
+    clip-path: var(--clippy);
+    transition: clip-path 0.4s;
+}
+
+.offcanvas-body>a:hover {
+    --clippy: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
 /* PARTE DEL MAIN Y DEL FORM */
 
 main>section {
