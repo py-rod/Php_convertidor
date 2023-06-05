@@ -1,18 +1,20 @@
 <?php
 
-
+// FUNCION QUE CONTENEDORA DE LA LOGICA DE LA VERIFICACION DE VARIABLES EN EL FORM
 interface IssetCheck
 {
     public function checkSelect($quantity, $select1, $select2);
 }
 
-
+// EL ENCARGADO DEHACER Y CONTENER LA LOGICA DE LA CONVERSION
 abstract class Conversion
 {
     abstract public function convert($quantity, $select1, $select2);
 }
 
 
+// ESTE ES EL ENCARGADO DE VERIFICAR CADA UNA DE LAS VARIABLES DEL FORM(INPUT, SELECT1, SELECT2)
+// SI NO EXISTEN MANDARA NULL
 class Check implements IssetCheck
 {
     public function checkSelect($quantity, $select1, $select2)
@@ -21,9 +23,12 @@ class Check implements IssetCheck
     }
 }
 
+
+// CLASE DE MONEDAS
 class Monedas extends Conversion
 {
-
+    // METODO SE ENCARGADA DE OBTENER TODAS LAS OPCIONES QUE APARECEN EN LOS SELECT DE INDEX
+    // OSEA DE OBTENER TODOS LOS PAISES MEDIANTE LA API
     public function symbols()
     {
         $curl = curl_init();
@@ -47,12 +52,7 @@ class Monedas extends Conversion
         curl_close($curl);
     }
 
-
-    public function mensaje()
-    {
-        return "mierda";
-    }
-
+    // MEDOTO SE ENCARGA DE HACER TODA LA CONVERSION USANDO LA API
     public function convert($quantity, $select1, $select2)
     {
         if ($quantity == null or $quantity == 0 or $select1 == $select2) {
@@ -83,10 +83,10 @@ class Monedas extends Conversion
     }
 }
 
-
+// CLASE LONGITUD
 class Longitud extends Conversion
 {
-
+    // METODO QUE SE ENCARGA DE ALMACENAR CADA UNA DE LAS OPCIONES DISPONIBLES PARA REALIZAR DICHAS CONVERSIONES
     public function data_array()
     {
         $operaciones = array(
@@ -114,7 +114,7 @@ class Longitud extends Conversion
         return $operaciones;
     }
 
-
+    // METODO DE LA CONVERSION 
     public function convert($quantity, $select1, $select2)
     {
 
@@ -128,8 +128,10 @@ class Longitud extends Conversion
     }
 }
 
+// CLASE DE MASA
 class Masa extends Conversion
 {
+    // METODO QUE SE ENCARGA DE ALMACENAR CADA UNA DE LAS OPCIONES DISPONIBLES PARA REALIZAR DICHAS CONVERSIONES
     public function data_array()
     {
         $operaciones = array(
@@ -169,8 +171,12 @@ class Masa extends Conversion
     }
 }
 
+
+// CLASE DATOS
 class Datos extends Conversion
 {
+
+    // METODO QUE SE ENCARGA DE ALMACENAR CADA UNA DE LAS OPCIONES DISPONIBLES PARA REALIZAR DICHAS CONVERSIONES
     public function data_array()
     {
         $operaciones = array(
@@ -221,10 +227,11 @@ class Datos extends Conversion
     }
 }
 
-
+// CLASE VOLUMEN
 class Volumen extends Conversion
 {
 
+    // METODO QUE SE ENCARGA DE ALMACENAR CADA UNA DE LAS OPCIONES DISPONIBLES PARA REALIZAR DICHAS CONVERSIONES
     public function data_array()
     {
         $operaciones = array(
@@ -256,9 +263,11 @@ class Volumen extends Conversion
     }
 }
 
-
+// CLASE TIEMPO
 class Tiempo extends Conversion
 {
+
+    // METODO QUE SE ENCARGA DE ALMACENAR CADA UNA DE LAS OPCIONES DISPONIBLES PARA REALIZAR DICHAS CONVERSIONES
     public function data_array()
     {
         $operaciones = array(

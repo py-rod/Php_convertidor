@@ -1,3 +1,3 @@
 <footer>
-    <p>copyright © 2023 hecho por Py-rod</p>
+    <p>copyright © 2023</p>
 </footer>
