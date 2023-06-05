@@ -207,3 +207,15 @@ footer {
     color: white;
     padding: 40px 0;
 }
+
+
+
+/* PARTE RESPONSIVE */
+
+
+
+@media (max-width:911px) {
+    main>section {
+        width: 100%;
+    }
+}

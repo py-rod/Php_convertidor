@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="content-select">
-                    <select name="select1">
+                    <select name="select1" style="width: 100%;">
                         <?php
                         if ($response !== false) {
                             $symbols = json_decode($response, true);
@@ -73,7 +73,7 @@
                         ?>
                     </select>
 
-                    <select name="select2">
+                    <select name="select2" style="width: 100%;">
                         <?php
                         if ($response !== false) {
                             $symbols = json_decode($response, true);
